@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Путь в вальхаллу</title>
+	</head>
+	<body>
+		<script>
+				var amass;
+				var wmass;
+				var	user1 = {
+					name: 'Лучник',
+					weapon:{
+						title: 'Bow of peril Damage',	//enchantment Damage:+10%damage
+						damage:amass=[22,66],
+						chanceCritical:20
+					},
+					health:400
+				};
+				var	user2 = {
+					name: 'Воин',
+					weapon:{
+						title: 'Heavy war axe Health',	 //enchantment Health:+25%hp
+						damage:wmass=[35,45],
+						chanceCritical:10
+					},
+					health:500
+				};
+				
+				var step = 1;
+				var healthArcher = user1.health;
+				var healthWarrior = user2.health;
+				alert('Внимание!\n\r Сейчас на эту арену выйдут на смертельную схватку великие воины! Один из них славиться своим мастерством стрельбы из лука, а другой выносливостью и обращением с топором, который в его руках отправил в вальхаллу не мало врагов! Я думаю вы уже догадались кто эти герои!\n\rОткрыть ворота!');
+	
+				for (step;healthWarrior>0&&healthArcher>0;step++) {
+					var damageArcher = (Math.random()*10<=user1.weapon.chanceCritical/10) ? ((Math.random()*(amass[1]-amass[0]) +amass[0])^0)*2: (Math.random()*(amass[1]-amass[0]) +amass[0])^0;
+					var damageWarrior = (Math.random()*10<=user2.weapon.chanceCritical/10) ? ((Math.random()*(wmass[1]-wmass[0]) +wmass[0])^0)*2: (Math.random()*(wmass[1]-wmass[0]) +wmass[0])^0;
+					var w;
+					var a;
+					alert('Ход '+step+': '+' Лучник нанес '
+					+damageArcher+
+					' повреждений Воину.\n\r             У Воина осталось '
+					+(((w=(healthWarrior-=damageArcher))>0) ? w:w=0)+
+					' здоровья.\n\r             Воин нанес '
+					+damageWarrior+
+					' повреждений Лучнику\n\r             У Лучника осталось '
+					+(((a=(healthArcher-=damageWarrior))>0) ? a:a=0)+
+					' здоровья.');
+					
+				}
+
+				if (w===0&&a===0){
+					alert('Бой завершен!\n\rК нашему глубочайшему сожалению в этом бою нет победителя!\n\rНекогда бывших соперников по арене валькирии доставят в вальхаллу, где они будут пировать с самим Одином и великими воинами! ');;
+				} else if (w===0){
+				alert('Бой завершен!\n\rПобеда достаеться Лучнику!\n\rПавшего в бою воина валькирии доставят в вальхаллу, где он будет пировать с самим Одином и великими воинами!');
+				} else if (a===0)alert('Бой завершен!\n\rПобеда достаеться Воину!\n\rПавшего в бою Лучника валькирии доставят в вальхаллу, где он будет пировать с самим Одином и великими воинами!');
+		</script>
+	</body>
+</html>
